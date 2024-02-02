@@ -60,7 +60,7 @@ let bb = qr_data*niti+ji*hun
 
 	sendQRValueToAPI(bb)	    
 		 //let aaa = "qr_data:" + bb;    
-               let aaa = "qr_data:" + convertedValue+bb;
+               let aaa = "qr_data:" + convertedValue;
 
                 sendText(aaa);
             }
