@@ -86,7 +86,32 @@ let bb = qr_data*niti+ji*hun
 }
 
 
+function sendQRValueToAPI(qrValue) {
+    var apiUrl = 'https://script.google.com/macros/s/AKfycbylW6a_5VUqLkKDExQZUV1Aqk5vGkJOGSTMLoSWcDpOHHDlik4B7xBB2PjxGA_myhJYmw/exec';
+    var payload = {
+        qrValue: qrValue
+    };
+    var options = {
+        method: 'post',
+        payload: JSON.stringify(payload),
+        contentType: 'application/json'
+    };
 
+    // fetch関数を使用してAPIにリクエストを送信
+    return fetch(apiUrl, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('APIレスポンスがエラーを返しました');
+            }
+            return response.json(); // JSON形式でレスポンスを解析して返す
+        })
+        .then(data => {
+            return data.convertedValue; // convertedValueを返す
+        })
+        .catch(err => {
+            throw err;
+        });
+}
 
 
 function hukugo(text1){
