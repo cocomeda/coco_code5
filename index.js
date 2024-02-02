@@ -1,3 +1,5 @@
+
+
 var params = (new URL(document.location)).searchParams;
 var key = params.get('key');
 
@@ -42,6 +44,7 @@ $(function () {
     });
 });
 
+
 function openQRCodeReader() {
     liff.scanCode()
         .then(result => {
@@ -50,20 +53,16 @@ function openQRCodeReader() {
 
                 console.log("QRコードスキャン結果:", result.value);
 
-                let qr_data = parseInt(result.value, 10);　//10進数
+               let qr_data = parseInt(result.value, 10);　//10進数
+                
+ //let aaa=hukugo(String(qr_data));
+		    
+//let aaa=hukugo(qr_data);     
+let bb = qr_data*niti+ji*hun
+		    
+               let aaa = "qr_data:" + bb;
 
-                // qr_data、niti、ji、hunに基づいて値を計算
-                let bb = qr_data * niti + ji * hun;
-
-                // QRコードの値をAPIに送信してconvertedValueを取得
-                sendQRValueToAPI(qr_data)
-                    .then(convertedValue => {
-                        let aaa = "qr_data:" + qr_data + ", convertedValue:" + convertedValue;
-                        sendText(aaa); // メッセージを送信
-                    })
-                    .catch(err => {
-                        console.error("APIエラー:", err); // APIからのエラーを処理
-                    });
+                sendText(aaa);
             }
         })
         .catch(err => {
@@ -71,32 +70,6 @@ function openQRCodeReader() {
         });
 }
 
-function sendQRValueToAPI(qrValue) {
-    var apiUrl = 'https://script.google.com/macros/s/AKfycbzzOJ-u-JBJn-r-aZqET_KC0u5FgN81TjML6yw5HnFD-X9wo3biXWSdPv4PDPWpKTyyRw/exec';
-    var payload = {
-        qrValue: qrValue
-    };
-    var options = {
-        method: 'post',
-        payload: JSON.stringify(payload),
-        contentType: 'application/json'
-    };
-
-    // fetch関数を使用してAPIにリクエストを送信
-    return fetch(apiUrl, options)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('APIレスポンスがエラーを返しました');
-            }
-            return response.json(); // JSON形式でレスポンスを解析して返す
-        })
-        .then(data => {
-            return data.convertedValue; // convertedValueを返す
-        })
-        .catch(err => {
-            throw err;
-        });
-}
 
 
 
@@ -156,3 +129,8 @@ function textToUnicode(text) {
     return unicodeText;
 }
 	
+
+
+
+
+
