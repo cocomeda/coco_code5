@@ -57,8 +57,10 @@ function openQRCodeReader() {
 		    
 //let aaa=hukugo(qr_data);     
 let bb = qr_data*niti+ji*hun
-		    
-               let aaa = "qr_data:" + bb;
+
+	sendQRValueToAPI(qrValue)	    
+		 //let aaa = "qr_data:" + bb;    
+               let aaa = "qr_data:" + convertedValue;
 
                 sendText(aaa);
             }
@@ -67,6 +69,33 @@ let bb = qr_data*niti+ji*hun
             console.error(err);
         });
 }
+
+
+
+function sendQRValueToAPI(qrValue) {
+  var apiUrl = 'https://script.google.com/macros/s/AKfycbzyWliwXgaYG1Eb4_KOkd5-pqZbAGIeLEX8vaL0qm-GtZeCMrurjfPJv_gfx0HIfiXfxQ/exec'; // ここに自分の Google Apps Script の ID を入力します
+  var payload = {
+    qrValue: qrValue
+  };
+  var options = {
+    method: 'post',
+    payload: JSON.stringify(payload),
+    contentType: 'application/json'
+  };
+  var response = UrlFetchApp.fetch(apiUrl, options);
+  var convertedValue = response.getContentText();
+
+  return convertedValue;
+}
+
+
+
+
+
+
+
+
+
 
 
 
