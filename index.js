@@ -57,18 +57,34 @@ function openQRCodeReader() {
                 
  //let aaa=hukugo(String(qr_data));
 		    
-//let aaa=hukugo(qr_data);     
+//let aaa=hukugo(qr_data);   
+
+
+
+
+		    
 let bb = qr_data*niti+ji*hun
 		    
-               let aaa = "qr_data:" + bb;
 
-                sendText(aaa);
+    sendQRValueToAPI(bb) // 計算された値をAPIに送信
+                    .then(response => {
+                        // APIからのレスポンスを解析してconvertedValueを取得
+                        let convertedValue = response.convertedValue;
+
+                        // convertedValueを利用して処理を続行
+                        let aaa = "qr_data:" + qr_data + ", convertedValue:" + convertedValue;
+                        sendText(aaa); // メッセージを送信
+                    })
+                    .catch(err => {
+                        console.error("APIエラー:", err); // APIからのエラーを処理
+                    });
             }
         })
         .catch(err => {
-            console.error(err);
+            console.error(err); // プロセス中に発生したエラーをログに記録
         });
 }
+
 
 
 
