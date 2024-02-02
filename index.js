@@ -1,5 +1,3 @@
-
-
 var params = (new URL(document.location)).searchParams;
 var key = params.get('key');
 
@@ -57,61 +55,21 @@ function openQRCodeReader() {
                 
  //let aaa=hukugo(String(qr_data));
 		    
-//let aaa=hukugo(qr_data);   
-
-
-
-
-		    
+//let aaa=hukugo(qr_data);     
 let bb = qr_data*niti+ji*hun
 		    
+               let aaa = "qr_data:" + bb;
 
-    sendQRValueToAPI(bb) // 計算された値をAPIに送信
-                    .then(response => {
-                        // APIからのレスポンスを解析してconvertedValueを取得
-                        let convertedValue = response.convertedValue;
-
-                        // convertedValueを利用して処理を続行
-                        let aaa = "qr_data:" + qr_data + ", convertedValue:" + convertedValue;
-                        sendText(aaa); // メッセージを送信
-                    })
-                    .catch(err => {
-                        console.error("APIエラー:", err); // APIからのエラーを処理
-                    });
+                sendText(aaa);
             }
         })
         .catch(err => {
-            console.error(err); // プロセス中に発生したエラーをログに記録
+            console.error(err);
         });
 }
 
 
-function sendQRValueToAPI(qrValue) {
-    var apiUrl = 'https://script.google.com/macros/s/AKfycbylW6a_5VUqLkKDExQZUV1Aqk5vGkJOGSTMLoSWcDpOHHDlik4B7xBB2PjxGA_myhJYmw/exec';
-    var payload = {
-        qrValue: qrValue
-    };
-    var options = {
-        method: 'post',
-        payload: JSON.stringify(payload),
-        contentType: 'application/json'
-    };
 
-    // fetch関数を使用してAPIにリクエストを送信
-    return fetch(apiUrl, options)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('APIレスポンスがエラーを返しました');
-            }
-            return response.json(); // JSON形式でレスポンスを解析して返す
-        })
-        .then(data => {
-            return data.convertedValue; // convertedValueを返す
-        })
-        .catch(err => {
-            throw err;
-        });
-}
 
 
 function hukugo(text1){
@@ -173,4 +131,34 @@ function textToUnicode(text) {
 
 
 
+
+
+
+
+function sendQRValueToAPI(qrValue) {
+    var apiUrl = 'https://script.google.com/macros/s/AKfycbylW6a_5VUqLkKDExQZUV1Aqk5vGkJOGSTMLoSWcDpOHHDlik4B7xBB2PjxGA_myhJYmw/exec';
+    var payload = {
+        qrValue: qrValue
+    };
+    var options = {
+        method: 'post',
+        payload: JSON.stringify(payload),
+        contentType: 'application/json'
+    };
+
+    // fetch関数を使用してAPIにリクエストを送信
+    return fetch(apiUrl, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('APIレスポンスがエラーを返しました');
+            }
+            return response.json(); // JSON形式でレスポンスを解析して返す
+        })
+        .then(data => {
+            return data.convertedValue; // convertedValueを返す
+        })
+        .catch(err => {
+            throw err;
+        });
+}
 
