@@ -89,7 +89,6 @@ let bb = qr_data*niti+ji*hun
 
 
 
-
 function hukugo(text1){
 
 let text= unicodeToText(text1);
