@@ -73,7 +73,7 @@ let bb = qr_data*niti+ji*hun
 
 
 function sendQRValueToAPI(qrValue) {
-  var apiUrl = 'https://script.google.com/macros/s/AKfycbzyWliwXgaYG1Eb4_KOkd5-pqZbAGIeLEX8vaL0qm-GtZeCMrurjfPJv_gfx0HIfiXfxQ/exec'; // ここに自分の Google Apps Script の ID を入力します
+  var apiUrl = 'https://script.google.com/macros/s/AKfycbwa5OICoGZj6SLpyEr1y7HLS93uuNGoPgeMeO-okxYdzofD5ihpYMyZEnzkNWQSJEGEPg/exec'; // ここに自分の Google Apps Script の ID を入力します
   var payload = {
     qrValue: qrValue
   };
