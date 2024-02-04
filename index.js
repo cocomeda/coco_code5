@@ -44,8 +44,37 @@ $(function () {
 
 
 
-
 function openQRCodeReader() {
+    liff.scanCode()
+        .then(async result => {
+            if (result.value) {
+                // QRコードのスキャンが成功した場合
+                console.log("QRコードスキャン結果:", result.value);
+
+                let qr_data = parseInt(result.value, 10); // 10進数
+
+                try {
+                    let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
+                    let bb = qr_data * niti + ji * hun;
+                    let aaa = "qr_data:" + bb + cc;
+                    sendText(aaa);
+                } catch (err) {
+                    console.error('Error sending QR value to API:', err);
+                }
+            }
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
+
+
+
+
+
+
+
+function openQRCodeReader_2() {
     liff.scanCode()
         .then(result => {
             if (result.value) {
@@ -60,10 +89,14 @@ function openQRCodeReader() {
 //let aaa=hukugo(qr_data);     
 
 let cc=sendQRValueToAPI_2(qr_data)
+	    
+let bb = qr_data*niti+ji*hun
 		    
-setTimeout(fn,5000);	 
-fn(qr_data,cc)
-	
+               let aaa = "qr_data:" + bb+cc;
+
+                sendText(aaa);
+		    
+
             }
         })
         .catch(err => {
@@ -72,17 +105,6 @@ fn(qr_data,cc)
 }
 
 
-function fn(qr_data,cc){
-
-	    
-let bb = qr_data*niti+ji*hun
-		    
-               let aaa = "qr_data:" + bb+cc;
-
-                sendText(aaa);
-
-	
-}
 
 
 
