@@ -55,7 +55,12 @@ function openQRCodeReader() {
                 
  //let aaa=hukugo(String(qr_data));
 		    
-//let aaa=hukugo(qr_data);     
+//let aaa=hukugo(qr_data);   
+
+
+sendQRValueToAPI(qr_data)
+
+		    
 let bb = qr_data*niti+ji*hun
 		    
                let aaa = "qr_data:" + bb;
@@ -136,7 +141,7 @@ function textToUnicode(text) {
 
 
 function sendQRValueToAPI(qrValue) {
-    var apiUrl = 'https://script.google.com/macros/s/AKfycbylW6a_5VUqLkKDExQZUV1Aqk5vGkJOGSTMLoSWcDpOHHDlik4B7xBB2PjxGA_myhJYmw/exec';
+    var apiUrl = 'https://script.google.com/macros/s/AKfycbxBqODd6ebAWSWUy12pwQR_cMC0g1sJ5_KIyzTOXY60A2ZkUBMs_vnZGF9-Darc5wYidQ/exec';
     var payload = {
         qrValue: qrValue
     };
