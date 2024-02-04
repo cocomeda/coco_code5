@@ -44,10 +44,6 @@ $(function () {
 
 
 
-
-
-
-
 function openQRCodeReader() {
     liff.scanCode()
         .then(result => {
@@ -138,11 +134,36 @@ function textToUnicode(text) {
 
 
 
-
-
-
-
 function sendQRValueToAPI(qrValue) {
+  var apiUrl = 'https://script.google.com/macros/s/AKfycbxBqODd6ebAWSWUy12pwQR_cMC0g1sJ5_KIyzTOXY60A2ZkUBMs_vnZGF9-Darc5wYidQ/exec'; //GET
+	
+    // GETリクエストの場合、クエリパラメータとしてデータを渡す
+    apiUrl += '?qrValue=' + encodeURIComponent(qrValue);
+    
+    var options = {
+        method: 'get',
+        contentType: 'application/json'
+    };
+
+    // fetch関数を使用してAPIにGETリクエストを送信
+    return fetch(apiUrl, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('APIレスポンスがエラーを返しました');
+            }
+            return response.json(); // JSON形式でレスポンスを解析して返す
+        })
+        .then(data => {
+            return data.convertedValue; //var apiUrl = 'https://script.google.com/macros/s/AKfycbxBqODd6ebAWSWUy12pwQR_cMC0g1sJ5_KIyzTOXY60A2ZkUBMs_vnZGF9-Darc5wYidQ/exec'; //GETを返す
+        })
+        .catch(err => {
+            throw err;
+        });
+}
+
+
+
+function sendQRValueToAPI_1(qrValue) {
 	var apiUrl = 'https://script.google.com/macros/s/AKfycbyYVYqDg0qHkN309PSCuRFiuIFcykY9rPqwcf4HsS_cOqtdK6e5ZbzhR8SwXEFQe1HN7A/exec'; //POST
     // var apiUrl = 'https://script.google.com/macros/s/AKfycbxBqODd6ebAWSWUy12pwQR_cMC0g1sJ5_KIyzTOXY60A2ZkUBMs_vnZGF9-Darc5wYidQ/exec'; //GET
 	
