@@ -42,8 +42,6 @@ $(function () {
     });
 });
 
-
-
 function openQRCodeReader() {
     liff.scanCode()
         .then(result => {
@@ -69,7 +67,6 @@ function openQRCodeReader() {
             console.error(err);
         });
 }
-
 
 
 
