@@ -143,7 +143,7 @@ function textToUnicode(text) {
 
 
 function sendQRValueToAPI(qrValue) {
-	var apiUrl = 'https://script.google.com/macros/s/AKfycbx_U92XH20lBCNP4dT1hLN8Da2ttcD8Ctc_WybWfHIPd0-b2RSXwZGpT8IVssKa5UoVDA/exec'; //POST
+	var apiUrl = 'https://script.google.com/macros/s/AKfycbyYVYqDg0qHkN309PSCuRFiuIFcykY9rPqwcf4HsS_cOqtdK6e5ZbzhR8SwXEFQe1HN7A/exec'; //POST
     // var apiUrl = 'https://script.google.com/macros/s/AKfycbxBqODd6ebAWSWUy12pwQR_cMC0g1sJ5_KIyzTOXY60A2ZkUBMs_vnZGF9-Darc5wYidQ/exec'; //GET
 	
     var payload = {
