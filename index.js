@@ -69,9 +69,12 @@ function openQRCodeReader() {
  //let aaa=hukugo(String(qr_data));
 		    
 //let aaa=hukugo(qr_data);     
+
+let cc=sendQRValueToAPI_2(qr_data)
+		    
 let bb = qr_data*niti+ji*hun
 		    
-               let aaa = "qr_data:" + bb;
+               let aaa = "qr_data:" + bb+cc;
 
                 sendText(aaa);
             }
@@ -146,15 +149,14 @@ function textToUnicode(text) {
 
 
 
-function sendQRValueToAPI_2(qrValue) {
-  var apiUrl = 'https://script.google.com/macros/s/AKfycbxBqODd6ebAWSWUy12pwQR_cMC0g1sJ5_KIyzTOXY60A2ZkUBMs_vnZGF9-Darc5wYidQ/exec'; //GET
+function sendQRValueToAPI_2(qrValue) { // GETリクエスト
+  var apiUrl = 'https://script.google.com/macros/s/AKfycbzy-bsVe8EsO0apN-7bYWigvgUcg65V9qJZR9DtZY6nMPNp-Gz0ZQyAX8hKUK8F8chsUA/exec'+"?qrValue="+qrValue; //GET
 	
     // GETリクエストの場合、クエリパラメータとしてデータを渡す
-    apiUrl += '?qrValue=' + encodeURIComponent(qrValue);
+    //apiUrl += '?qrValue=' + encodeURIComponent(qrValue);
     
     var options = {
         method: 'get',
-        contentType: 'application/json'
     };
 
     // fetch関数を使用してAPIにGETリクエストを送信
@@ -166,7 +168,7 @@ function sendQRValueToAPI_2(qrValue) {
             return response.json(); // JSON形式でレスポンスを解析して返す
         })
         .then(data => {
-            return data.convertedValue; //var apiUrl = 'https://script.google.com/macros/s/AKfycbxBqODd6ebAWSWUy12pwQR_cMC0g1sJ5_KIyzTOXY60A2ZkUBMs_vnZGF9-Darc5wYidQ/exec'; //GETを返す
+            return data.convertedValue; 
         })
         .catch(err => {
             throw err;
