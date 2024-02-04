@@ -70,7 +70,7 @@ function openQRCodeReader() {
 		    
 //let aaa=hukugo(qr_data);     
 
-let cc=sendQRValueToAPI_2(qr_data)
+let cc=await sendQRValueToAPI_2(qr_data)
 		    
 let bb = qr_data*niti+ji*hun
 		    
