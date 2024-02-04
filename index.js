@@ -43,35 +43,44 @@ $(function () {
 });
 
 
+
+
+
+
 function openQRCodeReader() {
     liff.scanCode()
         .then(result => {
             if (result.value) {
                 // QRコードのスキャンが成功した場合
-
                 console.log("QRコードスキャン結果:", result.value);
-
-               let qr_data = parseInt(result.value, 10);　//10進数
+                let qr_data = parseInt(result.value, 10);　//10進数
                 
- //let aaa=hukugo(String(qr_data));
-		    
-//let aaa=hukugo(qr_data);   
-
-
-let bbbb = sendQRValueToAPI(qr_data)
-
-		    
-let bb = qr_data*niti+ji*hun
-		    
-               let aaa = "qr_data:" + bb +bbbb;
-
-                sendText(aaa);
+                sendQRValueToAPI(qr_data)
+                    .then(bbbb => {
+                        let bb = qr_data * niti + ji * hun;
+                        let aaa = "qr_data:" + bb + bbbb;
+                        sendText(aaa);
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    });
             }
         })
         .catch(err => {
             console.error(err);
         });
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
