@@ -175,7 +175,8 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
     //apiUrl += '?qrValue=' + encodeURIComponent(qrValue);
     
     var options = {
-        method: 'get'
+        method: 'get',
+	    contentType: 'application/json'
 	    
     };
 
