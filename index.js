@@ -71,44 +71,6 @@ function openQRCodeReader() {
 
 
 
-
-
-
-function openQRCodeReader_2() {
-    liff.scanCode()
-        .then(result => {
-            if (result.value) {
-                // QRコードのスキャンが成功した場合
-
-                console.log("QRコードスキャン結果:", result.value);
-
-               let qr_data = parseInt(result.value, 10);　//10進数
-                
- //let aaa=hukugo(String(qr_data));
-		    
-//let aaa=hukugo(qr_data);     
-
-let cc=sendQRValueToAPI_2(qr_data)
-	    
-let bb = qr_data*niti+ji*hun
-		    
-               let aaa = "qr_data:" + bb+cc;
-
-                sendText(aaa);
-		    
-
-            }
-        })
-        .catch(err => {
-            console.error(err);
-        });
-}
-
-
-
-
-
-
 function hukugo(text1){
 
 let text= unicodeToText(text1);
@@ -197,33 +159,4 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
 }
 
 
-
-function sendQRValueToAPI(qrValue) {
-	var apiUrl = 'https://script.google.com/macros/s/AKfycbyYVYqDg0qHkN309PSCuRFiuIFcykY9rPqwcf4HsS_cOqtdK6e5ZbzhR8SwXEFQe1HN7A/exec'; //POST
-    // var apiUrl = 'https://script.google.com/macros/s/AKfycbxBqODd6ebAWSWUy12pwQR_cMC0g1sJ5_KIyzTOXY60A2ZkUBMs_vnZGF9-Darc5wYidQ/exec'; //GET
-	
-    var payload = {
-        qrValue: qrValue
-    };
-    var options = {
-        method: 'post',
-        payload: JSON.stringify(payload),
-        contentType: 'application/json'
-    };
-
-    // fetch関数を使用してAPIにリクエストを送信
-    return fetch(apiUrl, options)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('APIレスポンスがエラーを返しました');
-            }
-            return response.json(); // JSON形式でレスポンスを解析して返す
-        })
-        .then(data => {
-            return data.convertedValue; // convertedValueを返す
-        })
-        .catch(err => {
-            throw err;
-        });
-}
 
