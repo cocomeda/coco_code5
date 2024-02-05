@@ -51,7 +51,7 @@ function openQRCodeReader() {
                 // QRコードのスキャンが成功した場合
                 console.log("QRコードスキャン結果:", result.value);
 
-                let qr_data = parseInt(result.value, 10); // 10進数
+                let qr_data = result.value; // 10進数
 
                 try {
                     let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
