@@ -70,26 +70,6 @@ function openQRCodeReader() {
 
 
 
-   
-        // IDトークンをGASに送信する関数
-        function sendQRValueToAPI_0(qrValue) {
-           
-
-            // IDトークンをGASに送信
-            $.ajax({
-                url: 'https://script.google.com/macros/s/AKfycbyGxDjBCnYhK-eQ86yVr1_jqRsU3bcxeGE0uoP8beg-sFmeSICpcD1dre89ismqsTQ3/exec',
-                type: 'POST',
-                data: { qr_data: qrValue },
-                success: function (response) {
-                    // 成功時の処理
-                    console.log(response);
-                    //sendText(response)
-const jsonData = JSON.parse(response);
-			 res=${jsonData.name} 
-        return res;
-                }
-            });
-        }
 
 
 
@@ -108,7 +88,10 @@ function sendQRValueToAPI_3(qrValue) {
     var response = UrlFetchApp.fetch('https://script.google.com/macros/s/AKfycbyGxDjBCnYhK-eQ86yVr1_jqRsU3bcxeGE0uoP8beg-sFmeSICpcD1dre89ismqsTQ3/exec', options);
     var responseData = JSON.parse(response.getContentText());
 	// var responseData =response.getContentText();
-    return responseData;
+
+			 res=${jsonData.convertedValue} 
+	
+    return res
 }
 
 
