@@ -84,7 +84,9 @@ function openQRCodeReader() {
                     // 成功時の処理
                     console.log(response);
                     //sendText(response)
-        return response;
+const jsonData = JSON.parse(response);
+			 res=${jsonData.name} 
+        return res;
                 }
             });
         }
