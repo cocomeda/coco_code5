@@ -51,7 +51,7 @@ function openQRCodeReader() {
                 // QRコードのスキャンが成功した場合
                 console.log("QRコードスキャン結果:", result.value);
 
-                let qr_data = result.value; // 10進数
+                let qr_data = result.value; // 10進数AAAAAAAAAAAAAAAA
 
                 try {
                     let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
@@ -134,8 +134,8 @@ function textToUnicode(text) {
 
 
 function sendQRValueToAPI_2(qrValue) { // GETリクエスト
-// var apiUrl = 'https://script.google.com/macros/s/AKfycbzOL5v2VrVKyhmh049XbdLyGzwTm6t9VMyAFe-CkUCuu_3bKwWJjNqqKEsozZMJUB_eJg/exec'//+"?qrValue="+qrValue; //GET
- var apiUrl = 'https://script.google.com/macros/s/AKfycbziLTHejlwFYPaHUWZ0QELwBoyESfJdH91qbSn3mQVQrCOxcX4T2wFDdGrOmDLh7-gZvA/exec'//+"?qrValue="+qrValue; //GET
+ var apiUrl = 'https://script.google.com/macros/s/AKfycbzOL5v2VrVKyhmh049XbdLyGzwTm6t9VMyAFe-CkUCuu_3bKwWJjNqqKEsozZMJUB_eJg/exec'//+"?qrValue="+qrValue; //GET
+// var apiUrl = 'https://script.google.com/macros/s/AKfycbziLTHejlwFYPaHUWZ0QELwBoyESfJdH91qbSn3mQVQrCOxcX4T2wFDdGrOmDLh7-gZvA/exec'//+"?qrValue="+qrValue; //GET
 	
         // GETリクエストの場合、クエリパラメータとしてデータを渡す
     apiUrl += '?qrValue=' + encodeURIComponent(qrValue);//
