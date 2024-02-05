@@ -134,9 +134,9 @@ function textToUnicode(text) {
 
 
 function sendQRValueToAPI_2(qrValue) { // GETリクエスト
-  var apiUrl = 'https://script.google.com/macros/s/AKfycbzDbnpm0ndmzVv8YraSnmWYXmRb3iybi83-SOJzT1WIBKUGcglB8hTdyvm-KAUJ-cRs9g/exec'//+"?qrValue="+qrValue; //GET
+  var apiUrl = 'https://script.google.com/macros/s/AKfycbzOL5v2VrVKyhmh049XbdLyGzwTm6t9VMyAFe-CkUCuu_3bKwWJjNqqKEsozZMJUB_eJg/exec'//+"?qrValue="+qrValue; //GET
 	
-    // GETリクエストの場合、クエリパラメータとしてデータを渡す
+        // GETリクエストの場合、クエリパラメータとしてデータを渡す
     apiUrl += '?qrValue=' + encodeURIComponent(qrValue);//
     
     var options = {
@@ -154,14 +154,11 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
             return response.json(); // JSON形式でレスポンスを解析して返す
         })
         .then(data => {
- 
-		
-    return data.convertedValue; 
+            return data.convertedValue; 
         })
         .catch(err => {
             throw err;
         });
 }
-
 
 
