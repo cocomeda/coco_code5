@@ -83,8 +83,8 @@ function openQRCodeReader() {
                 success: function (response) {
                     // 成功時の処理
                     console.log(response);
-                    sendText(response)
-        
+                    //sendText(response)
+        return response;
                 }
             });
         }
