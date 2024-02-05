@@ -104,7 +104,8 @@ function sendQRValueToAPI_3(qrValue) {
     };
 
     var response = UrlFetchApp.fetch('https://script.google.com/macros/s/AKfycbyGxDjBCnYhK-eQ86yVr1_jqRsU3bcxeGE0uoP8beg-sFmeSICpcD1dre89ismqsTQ3/exec', options);
-    var responseData = JSON.parse(response.getContentText());
+    //var responseData = JSON.parse(response.getContentText());
+	 var responseData =response.getContentText();
     return responseData;
 }
 
