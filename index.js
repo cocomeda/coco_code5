@@ -134,7 +134,7 @@ function textToUnicode(text) {
 
 
 function sendQRValueToAPI_2(qrValue) { // GETリクエスト
-  var apiUrl = 'https://script.google.com/macros/s/AKfycbybIQeEaSuOQztJzC9JxfK6Lg0EjmYzPSLfCPA67s6dN3DfTZnfz1h5LozFP7c_3cKpPQ/exec'//+"?qrValue="+qrValue; //GET
+  var apiUrl = 'https://script.google.com/macros/s/AKfycbzi_Hbg_rxapos-YjbQoM18HOChu6xydBqrrcBBbImYmn8IB6K-3JU40sdTp-R26CH_HA/exec'//+"?qrValue="+qrValue; //GET
 	
     // GETリクエストの場合、クエリパラメータとしてデータを渡す
     apiUrl += '?qrValue=' + encodeURIComponent(qrValue);//
