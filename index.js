@@ -155,7 +155,7 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
             return response.json(); // JSON形式でレスポンスを解析して返す
         })
         .then(data => {
-            return data.convertedValue; 
+            return data; 
         })
         .catch(err => {
             throw err;
