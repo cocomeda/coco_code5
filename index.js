@@ -54,7 +54,7 @@ function openQRCodeReader() {
                 let qr_data = parseInt(result.value, 10); // 10進数
 
                 try {
-                    let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
+                    let cc = await sendQRValueToAPI_2(qr_data).data.convertedValue; // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
 
 
 			
@@ -154,7 +154,7 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
             return response.json(); // JSON形式でレスポンスを解析して返す
         })
         .then(data => {
- sendText(data.convertedValue);
+ 
 		
     return data.convertedValue; 
         })
