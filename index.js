@@ -132,7 +132,7 @@ function textToUnicode(text) {
 
  
 function sendQRValueToAPI_2(qrValue) { // GETリクエスト
-	var apiUrl = 'https://script.google.com/macros/s/AKfycby1IR4GUujKDly40He_nqwBc01c0g6nhK-Pp1DpW0CPTXPEWhzcUQwlw7Wttet20MHMIw/exec'//+"?qrValue="+qrValue; //GET
+	var apiUrl = 'https://script.google.com/macros/s/AKfycby_awk1BqhI-52AtZyjpP5YbOmaanfEoMY_1N2ZZStElTjtSJkJy-zVKrQ6dReUEJbhxw/exec'//+"?qrValue="+qrValue; //GET
 
 // var apiUrl = 'https://script.google.com/macros/s/AKfycbyq4MSw9UilpU-BMuyXusJz-szFwVENhlrNL4-GG1R5RuVjmX44LD_GadRQKwUnSrEoWA/exec'//+"?qrValue="+qrValue; //GET
 // var apiUrl = 'https://script.google.com/macros/s/AKfycbziLTHejlwFYPaHUWZ0QELwBoyESfJdH91qbSn3mQVQrCOxcX4T2wFDdGrOmDLh7-gZvA/exec'//+"?qrValue="+qrValue; //GET
