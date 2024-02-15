@@ -153,7 +153,8 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
             if (!response.ok) {
                 throw new Error('APIレスポンスがエラーを返しました');
             }
-            return response.json(); // JSON形式でレスポンスを解析して返す
+            //return response.json(); // JSON形式でレスポンスを解析して返す
+	　　return response.text(); // JSON形式でレスポンスを解析して返す
         })
         .then(data => {
             return data; 
