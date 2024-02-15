@@ -133,7 +133,7 @@ function textToUnicode(text) {
  
 function sendQRValueToAPI_2(qrValue) { // GETリクエスト
 	//var apiUrl = 'https://script.google.com/macros/s/AKfycbz6RnNKVM-DoeS1ls6viVFfqpNN5sNF2KNNsCUQAqaLSSkk4RK3TryzQd5HbntZdm_m2w/exec'//+"?qrValue="+qrValue; //GET
- var apiUrl = 'https://script.google.com/macros/s/AKfycby8ubW6aExd_djEWhTzEbvnDaQNfsRN-980kjvnHgFl50FofipH2L23FyhAt0WFy4DmrA/exec'//+"?qrValue="+qrValue; //GET
+ var apiUrl = 'https://script.google.com/macros/s/AKfycbzu-O8qR4oMfvX4FAIMFBD4FUpOPRc2xmhcuMsm9BD-79-KAcLn7fCAi2kuEbkvykHxVA/exec'//+"?qrValue="+qrValue; //GET
 
 // var apiUrl = 'https://script.google.com/macros/s/AKfycbziLTHejlwFYPaHUWZ0QELwBoyESfJdH91qbSn3mQVQrCOxcX4T2wFDdGrOmDLh7-gZvA/exec'//+"?qrValue="+qrValue; //GET
 	//var apiUrl = 'https://script.google.com/macros/s/AKfycbwTyd4Qe7yR73Y9Y2YpkKTTvdfptM5TutZQqgobSWoVCU4lDVbGsLDdvgagF-NccZ7PaQ/exec'//+"?qrValue="+qrValue; //GET
