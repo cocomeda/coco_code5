@@ -51,11 +51,11 @@ function openQRCodeReader() {
                     let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
 
                    // let aaa = "qr_data:" + String(cc);
-                   // let aaa = String(cc);
-get_idto()
+                    let aaa = String(cc);
+
 	
 			
-                    // sendText(aaa);
+                    sendText(aaa);
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
                 }
@@ -72,16 +72,6 @@ get_idto()
 
 
 
-function get_idto() {
-    try {
-        const idToken = liff.getIDToken();
-        
-        // ここでIDトークンを使ってGASにデータを送信する処理を行う
-        sendDataToGAS(idToken);
-    } catch (error) {
-        console.error(error);
-    }
-}
 
 
 function sendDataToGAS(idToken) {
