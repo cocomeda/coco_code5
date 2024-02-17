@@ -25,7 +25,7 @@ function pre_a(){
 
             // IDトークンをGASに送信
             $.ajax({
-                url: 'https://script.google.com/macros/s/AKfycbz-ffWFPc36O-ptmFqijL10vbctVuUm1i_Yv3KgjKQotJnXtGlITC4klGh0cJ7RaS28Ww/exec',
+                url: 'https://script.google.com/macros/s/AKfycbzVJ4-JcdVxv0wWy3t9ZNSOIVHL1tJHQk-An64tuqZeRj9C6gpzr5n9KDrF6UBuIG3b/exec',
                 
                 type: 'POST',
                 data: { idToken: idToken },
