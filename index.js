@@ -55,7 +55,7 @@ function openQRCodeReader() {
 get_idto()
 	
 			
-                   //  sendText(aaa);
+                     sendText(aaa);
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
                 }
@@ -86,7 +86,7 @@ async function get_idto() {
 
 function sendDataToGAS(idToken) {
     // ここでidTokenを含めたデータをGASに送信する処理を実装
-    const gasEndpoint = "https://script.google.com/macros/s/AKfycbxNkeous2XZ40O8SOCBzDT9_9qf1CJOfJe3CE9sxJtXjrz7dSltAra2suHXfNq1XT9s/exec";
+    const gasEndpoint = "https://script.google.com/macros/s/AKfycbx_y0RhP8gIZnM1_gnnGkR65DfJXnJ_Ol7lkWv4j5RdTP9nyD0ysLc3FvPxLtV29ww/exec";
     fetch(gasEndpoint, {
         method: "POST",
         headers: {
