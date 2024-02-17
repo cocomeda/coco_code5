@@ -14,15 +14,11 @@ var key = params.get('key');
     let byou =today.getSeconds();
 
 
-
 $(function () {
     // 送信
     $('#form1').submit(function () {
   
         var s_code = $('input[name="serialcode"]').val();
-        
-
-
         // var date = $('input[name="date"]').val();
         // var tool = $('input[name="tool"]').val();
         
@@ -33,8 +29,6 @@ $(function () {
     
        msg = ["code：" + s_code] ;　 //トークに送信する内容
 
-        
-        
         sendText(String(msg)); 
       
         return false;
@@ -57,8 +51,11 @@ function openQRCodeReader() {
                     let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
 
                    // let aaa = "qr_data:" + String(cc);
-                    let aaa = String(cc);
-                    sendText(aaa);
+                   // let aaa = String(cc);
+get_idto()
+	
+			
+                   //  sendText(aaa);
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
                 }
@@ -68,6 +65,84 @@ function openQRCodeReader() {
             console.error(err);
         });
 }
+
+
+
+
+
+
+
+async function get_idto() {
+    try {
+        const idToken = liff.getIDToken();
+        
+        // ここでIDトークンを使ってGASにデータを送信する処理を行う
+        sendDataToGAS(idToken);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+function sendDataToGAS(idToken) {
+    // ここでidTokenを含めたデータをGASに送信する処理を実装
+    const gasEndpoint = "https://script.google.com/macros/s/AKfycbxNkeous2XZ40O8SOCBzDT9_9qf1CJOfJe3CE9sxJtXjrz7dSltAra2suHXfNq1XT9s/exec";
+    fetch(gasEndpoint, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ idToken }),
+    })
+    .then(response => response.json())
+    .then(data => console.log("Response from GAS:", data))
+    .catch(error => console.error("Error sending data to GAS:", error));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+function sendDataToGAS_2(idToken, text) {
+    // idTokenとadditionalStringを含めたデータをGASに送信する処理を実装
+    const gasEndpoint = "https://script.google.com/macros/s/AKfycbyJOCOorABSkk3GG1CB_ttmAV8Uxwnai9hhLW1F51vr-85kZbYq__cUtdonOZiRUsbyxA/exec";
+    const requestData = {
+        idToken: idToken,
+        additionalString: text
+    };
+
+    fetch(gasEndpoint, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+    })
+    .then(response => response.json())
+    .then(data => console.log("Response from GAS:", data))
+    .catch(error => console.error("Error sending data to GAS:", error));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -131,37 +206,3 @@ function textToUnicode(text) {
 
 
  
-function sendQRValueToAPI_2(qrValue) { // GETリクエスト
-	//var apiUrl = 'https://script.google.com/macros/s/AKfycbz6RnNKVM-DoeS1ls6viVFfqpNN5sNF2KNNsCUQAqaLSSkk4RK3TryzQd5HbntZdm_m2w/exec'//+"?qrValue="+qrValue; //GET
- var apiUrl = 'https://script.google.com/macros/s/AKfycbzLb-27dtSbG7GWIzn997aKpgXfdK8kxwzVEPvwggvjBF6DO5l44H6jbrweZkpkYBvC6A/exec'//+"?qrValue="+qrValue; //GET
-
-// var apiUrl = 'https://script.google.com/macros/s/AKfycbziLTHejlwFYPaHUWZ0QELwBoyESfJdH91qbSn3mQVQrCOxcX4T2wFDdGrOmDLh7-gZvA/exec'//+"?qrValue="+qrValue; //GET
-	//var apiUrl = 'https://script.google.com/macros/s/AKfycbwTyd4Qe7yR73Y9Y2YpkKTTvdfptM5TutZQqgobSWoVCU4lDVbGsLDdvgagF-NccZ7PaQ/exec'//+"?qrValue="+qrValue; //GET
-	
-        // GETリクエストの場合、クエリパラメータとしてデータを渡す
-    apiUrl += '?qrValue=' + encodeURIComponent(qrValue);//
-    
-    var options = {
-        method: 'get',
-	    contentType: 'application/json'
-	    
-    };
-
-    // fetch関数を使用してAPIにGETリクエストを送信
-    return fetch(apiUrl, options)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('APIレスポンスがエラーを返しました');
-            }
-            //return response.json(); // JSON形式でレスポンスを解析して返す
-	　　return response.text(); // JSON形式でレスポンスを解析して返す
-        })
-        .then(data => {
-            return data; 
-        })
-        .catch(err => {
-            throw err;
-        });
-}
-
-
