@@ -1,6 +1,6 @@
 
 
-
+function pre(){
         // LIFFの初期化
         liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
             if (liff.isLoggedIn()) {
@@ -11,6 +11,10 @@
                 liff.login();
             }
         });
+
+}
+
+
 
         // IDトークンをGASに送信する関数
         function sendIdTokenToGAS() {
