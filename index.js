@@ -2,7 +2,7 @@
 
 
         // LIFFの初期化
-        liff.init({ liffId: '2001905227-7dKy6ERe' }, () => {
+        liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
             if (liff.isLoggedIn()) {
                 // ユーザーがログインしている場合
       openQRCodeReader()
