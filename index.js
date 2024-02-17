@@ -1,6 +1,6 @@
 
 
-function pre(){
+function pre_a(){
         // LIFFの初期化
         liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
             if (liff.isLoggedIn()) {
