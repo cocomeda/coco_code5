@@ -55,7 +55,7 @@ function openQRCodeReader() {
 get_idto()
 	
 			
-                     sendText(aaa);
+                    // sendText(aaa);
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
                 }
@@ -72,7 +72,7 @@ get_idto()
 
 
 
-async function get_idto() {
+function get_idto() {
     try {
         const idToken = liff.getIDToken();
         
