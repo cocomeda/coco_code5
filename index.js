@@ -1,9 +1,4 @@
 
-
-
-
-
-
 var params = (new URL(document.location)).searchParams;
 var key = params.get('key');
 
@@ -64,11 +59,7 @@ function openQRCodeReader() {
 
                    // let aaa = "qr_data:" + String(cc);
                     let aaa = String(cc);
-
-			
                     sendText(aaa);
-
-			
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
                 }
