@@ -36,8 +36,6 @@ $(function () {
     });
 });
 
-
-
 function openQRCodeReader() {
     liff.scanCode()
         .then(async result => {
@@ -52,9 +50,6 @@ function openQRCodeReader() {
 
                    // let aaa = "qr_data:" + String(cc);
                     let aaa = String(cc);
-
-	
-			
                     sendText(aaa);
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
@@ -65,74 +60,6 @@ function openQRCodeReader() {
             console.error(err);
         });
 }
-
-
-
-
-
-
-
-
-
-function sendDataToGAS(idToken) {
-    // ここでidTokenを含めたデータをGASに送信する処理を実装
-    const gasEndpoint = "https://script.google.com/macros/s/AKfycbx_y0RhP8gIZnM1_gnnGkR65DfJXnJ_Ol7lkWv4j5RdTP9nyD0ysLc3FvPxLtV29ww/exec";
-    fetch(gasEndpoint, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ idToken }),
-    })
-    .then(response => response.json())
-    .then(data => console.log("Response from GAS:", data))
-    .catch(error => console.error("Error sending data to GAS:", error));
-}
-
-
-
-
-
-
-
-
-
-
-
-
-function sendDataToGAS_2(idToken, text) {
-    // idTokenとadditionalStringを含めたデータをGASに送信する処理を実装
-    const gasEndpoint = "https://script.google.com/macros/s/AKfycbyJOCOorABSkk3GG1CB_ttmAV8Uxwnai9hhLW1F51vr-85kZbYq__cUtdonOZiRUsbyxA/exec";
-    const requestData = {
-        idToken: idToken,
-        additionalString: text
-    };
-
-    fetch(gasEndpoint, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-    })
-    .then(response => response.json())
-    .then(data => console.log("Response from GAS:", data))
-    .catch(error => console.error("Error sending data to GAS:", error));
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -196,3 +123,37 @@ function textToUnicode(text) {
 
 
  
+function sendQRValueToAPI_2(qrValue) { // GETリクエスト
+	//var apiUrl = 'https://script.google.com/macros/s/AKfycbz6RnNKVM-DoeS1ls6viVFfqpNN5sNF2KNNsCUQAqaLSSkk4RK3TryzQd5HbntZdm_m2w/exec'//+"?qrValue="+qrValue; //GET
+ var apiUrl = 'https://script.google.com/macros/s/AKfycbzLb-27dtSbG7GWIzn997aKpgXfdK8kxwzVEPvwggvjBF6DO5l44H6jbrweZkpkYBvC6A/exec'//+"?qrValue="+qrValue; //GET
+
+// var apiUrl = 'https://script.google.com/macros/s/AKfycbziLTHejlwFYPaHUWZ0QELwBoyESfJdH91qbSn3mQVQrCOxcX4T2wFDdGrOmDLh7-gZvA/exec'//+"?qrValue="+qrValue; //GET
+	//var apiUrl = 'https://script.google.com/macros/s/AKfycbwTyd4Qe7yR73Y9Y2YpkKTTvdfptM5TutZQqgobSWoVCU4lDVbGsLDdvgagF-NccZ7PaQ/exec'//+"?qrValue="+qrValue; //GET
+	
+        // GETリクエストの場合、クエリパラメータとしてデータを渡す
+    apiUrl += '?qrValue=' + encodeURIComponent(qrValue);//
+    
+    var options = {
+        method: 'get',
+	    contentType: 'application/json'
+	    
+    };
+
+    // fetch関数を使用してAPIにGETリクエストを送信
+    return fetch(apiUrl, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('APIレスポンスがエラーを返しました');
+            }
+            //return response.json(); // JSON形式でレスポンスを解析して返す
+	　　return response.text(); // JSON形式でレスポンスを解析して返す
+        })
+        .then(data => {
+            return data; 
+        })
+        .catch(err => {
+            throw err;
+        });
+}
+
+
