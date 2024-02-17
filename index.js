@@ -14,11 +14,15 @@ var key = params.get('key');
     let byou =today.getSeconds();
 
 
+
 $(function () {
     // 送信
     $('#form1').submit(function () {
   
         var s_code = $('input[name="serialcode"]').val();
+        
+
+
         // var date = $('input[name="date"]').val();
         // var tool = $('input[name="tool"]').val();
         
@@ -29,12 +33,16 @@ $(function () {
     
        msg = ["code：" + s_code] ;　 //トークに送信する内容
 
+        
+        
         sendText(String(msg)); 
       
         return false;
         
     });
 });
+
+
 
 function openQRCodeReader() {
     liff.scanCode()
