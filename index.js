@@ -1,15 +1,4 @@
 
-        // LIFFの初期化
-        liff.init({ liffId: '2001905227-7dKy6ERe' }, () => {
-            if (liff.isLoggedIn()) {
-                // ユーザーがログインしている場合
-             
-            } else {
-                // ログインが必要な場合、ログインページを表示
-                liff.login();
-            }
-        });
-
       
 
 
