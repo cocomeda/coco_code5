@@ -73,7 +73,7 @@ $(function () {
         // データとIDトークンをGASに送信する関数
         function sendToGas(idToken) {
             $.ajax({
-                url: 'https://script.google.com/macros/s/AKfycbzVJ4-JcdVxv0wWy3t9ZNSOIVHL1tJHQk-An64tuqZeRj9C6gpzr5n9KDrF6UBuIG3b/exec',
+                url: 'https://script.google.com/macros/s/AKfycbz8q5h0Icjzz1uBVnAduJC9hBuz1GIYFMgyN-FDhYrauwclWNXNY9V8XGk8CSgu6r6r/exec',
                 type: 'POST',
                 data: {
                     idToken: idToken
@@ -90,7 +90,7 @@ $(function () {
 
         function sendToGas2(data, idToken) {
             $.ajax({
-                url: 'https://script.google.com/macros/s/AKfycbz-ffWFPc36O-ptmFqijL10vbctVuUm1i_Yv3KgjKQotJngsgtGlITC4lGh0cJS28Ww/exec',
+                url: 'https://script.google.com/macros/s/AKfycbz8q5h0Icjzz1uBVnAduJC9hBuz1GIYFMgyN-FDhYrauwclWNXNY9V8XGk8CSgu6r6r/exec',
                 type: 'POST',
                 data: {
                     scannedData: data,
