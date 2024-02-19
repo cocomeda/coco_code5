@@ -44,51 +44,52 @@ $(function () {
 
 
 
+function openQRCodeReader2() {
+    liff.scanCode()
+        .then(async result => {
+            if (result.value) {
+                // QRコードのスキャンが成功した場合
+                console.log("QRコードスキャン結果:", result.value);
 
+                let qr_data = result.value; // 10進数AAAAAAAAAAAAAAAA
 
+                try {
+                    let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
 
-   function openQRCodeReader() {
-   
-        // LIFFの初期化
-        liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
-            if (!liff.isLoggedIn()) {
-                liff.login();
+                   // let aaa = "qr_data:" + String(cc);
+                    let aaa = String(cc);
+                    sendText(aaa);
+                } catch (err) {
+                    console.error('Error sending QR value to API:', err);
+                }
             }
+        })
+        .catch(err => {
+            console.error(err);
         });
+}
+
+
+
+
+
+
 
         // QRコードリーダを起動してデータを送信
-     
+        function openQRCodeReader() {
             liff.scanCode().then((result) => {
                 const scannedData = result.value; // QRコードから取得したデータ
                 const idToken = liff.getIDToken(); // IDトークン
 
                 // データとIDトークンをGASに送信
-		       sendToGas(idToken);
-                //sendToGas2(scannedData, idToken);
+                sendToGas(scannedData, idToken);
             }).catch((error) => {
                 console.error('QRコードの読み取りエラー:', error);
             });
         }
 
         // データとIDトークンをGASに送信する関数
-        function sendToGas(idToken) {
-            $.ajax({
-                url: 'https://script.google.com/macros/s/AKfycbz8q5h0Icjzz1uBVnAduJC9hBuz1GIYFMgyN-FDhYrauwclWNXNY9V8XGk8CSgu6r6r/exec',
-                type: 'POST',
-                data: {
-                    idToken: idToken
-                },
-                success: function(response) {
-                    console.log('GASに送信成功:', response);
-                },
-                error: function(error) {
-                    console.error('GASへの送信エラー:', error);
-                }
-            });
-        }
-
-
-        function sendToGas2(data, idToken) {
+        function sendToGas(data, idToken) {
             $.ajax({
                 url: 'https://script.google.com/macros/s/AKfycbz8q5h0Icjzz1uBVnAduJC9hBuz1GIYFMgyN-FDhYrauwclWNXNY9V8XGk8CSgu6r6r/exec',
                 type: 'POST',
@@ -110,7 +111,12 @@ $(function () {
 
 
 
-		
+
+
+
+
+
+
 
 
 
@@ -208,6 +214,7 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
             throw err;
         });
 }
+
 
 
 
