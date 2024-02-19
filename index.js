@@ -77,6 +77,16 @@ function openQRCodeReader2() {
 
         // QRコードリーダを起動してデータを送信
         function openQRCodeReader() {
+
+ // LIFFの初期化
+        liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
+            if (!liff.isLoggedIn()) {
+                liff.login();
+            }
+        });
+
+
+		
             liff.scanCode().then((result) => {
                 const scannedData = result.value; // QRコードから取得したデータ
                 const idToken = liff.getIDToken(); // IDトークン
