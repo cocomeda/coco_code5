@@ -91,7 +91,7 @@ function openQRCodeReader2() {
         // データとIDトークンをGASに送信する関数
         function sendToGas(data, idToken) {
             $.ajax({
-                url: 'https://script.google.com/macros/s/AKfycbz8q5h0Icjzz1uBVnAduJC9hBuz1GIYFMgyN-FDhYrauwclWNXNY9V8XGk8CSgu6r6r/exec',
+                url: 'https://script.google.com/macros/s/AKfycbwOhzH5n2XdzjvlpdzOfyRhuSSS4d27muiOwfvK3VQ_qBQENnbuStCspyehq_qymeM/exec',
                 type: 'POST',
                 data: {
                     scannedData: data,
