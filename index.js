@@ -44,93 +44,66 @@ $(function () {
 
 
 
-function openQRCodeReader() {
-    liff.scanCode()
-        .then(async result => {
-            if (result.value) {
-                // QRコードのスキャンが成功した場合
-                console.log("QRコードスキャン結果:", result.value);
-
-                let qr_data = result.value; // 10進数AAAAAAAAAAAAAAAA
-
-                try {
-                    let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
-
-                   // let aaa = "qr_data:" + String(cc);
-                    let aaa = String(cc);
-                  // sendText(aaa);
- sendIdTokenToGAS();
-			
-                } catch (err) {
-                    console.error('Error sending QR value to API:', err);
-                }
-            }
-        })
-        .catch(err => {
-            console.error(err);
-        });
-}
 
 
 
 
-
-
-
-
-        // IDトークンをGASに送信する関数
-        function sendIdTokenToGAS() {
-
-		
-      // LIFFの初期化
-        liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
-            if (liff.isLoggedIn()) {
-                // ユーザーがログインしている場合
-
-
-		
-            const idToken = liff.getIDToken();
-
-            // ローディング画像表示
-            $('#loading').show();
-
-            // IDトークンをGASに送信
-            $.ajax({
-                url: 'https://script.google.com/macros/s/AKfycbzVJ4-JcdVxv0wWy3t9ZNSOIVHL1tJHQk-An64tuqZeRj9C6gpzr5n9KDrF6UBuIG3b/exec',
-                
-                type: 'POST',
-                data: { idToken: idToken },
-                success: function (response) {
-                    // 成功時の処理
-                    console.log(response);
-                    displayMessage(response); // レスポンスメッセージを表示
-                    displayData(response);
-                },
-                error: function (error) {
-                    // エラー時の処理
-                    console.error(error);
-                    alert('Failed to send ID Token to GAS.');
-                },
-                complete: function () {
-                    // 通信完了時の処理（ローディング画像を非表示にし、コンテンツを表示）
-                    $('#loading').hide();
-                    $('#content').show();
-                }
-            });
-
-
-
-  } else {
-                // ログインが必要な場合、ログインページを表示
+   
+        // LIFFの初期化
+        liff.init({ liffId: 'YOUR_LIFF_ID' }, () => {
+            if (!liff.isLoggedIn()) {
                 liff.login();
             }
         });
-		
+
+        // QRコードリーダを起動してデータを送信
+        function openQRCodeReader() {
+            liff.scanCode().then((result) => {
+                const scannedData = result.value; // QRコードから取得したデータ
+                const idToken = liff.getIDToken(); // IDトークン
+
+                // データとIDトークンをGASに送信
+		       sendToGas(idToken);
+                //sendToGas2(scannedData, idToken);
+            }).catch((error) => {
+                console.error('QRコードの読み取りエラー:', error);
+            });
+        }
+
+        // データとIDトークンをGASに送信する関数
+        function sendToGas(idToken) {
+            $.ajax({
+                url: 'https://script.google.com/macros/s/AKfycbzVJ4-JcdVxv0wWy3t9ZNSOIVHL1tJHQk-An64tuqZeRj9C6gpzr5n9KDrF6UBuIG3b/exec',
+                type: 'POST',
+                data: {
+                    idToken: idToken
+                },
+                success: function(response) {
+                    console.log('GASに送信成功:', response);
+                },
+                error: function(error) {
+                    console.error('GASへの送信エラー:', error);
+                }
+            });
         }
 
 
-
-
+        function sendToGas2(data, idToken) {
+            $.ajax({
+                url: 'https://script.google.com/macros/s/AKfycbz-ffWFPc36O-ptmFqijL10vbctVuUm1i_Yv3KgjKQotJngsgtGlITC4lGh0cJS28Ww/exec',
+                type: 'POST',
+                data: {
+                    scannedData: data,
+                    idToken: idToken
+                },
+                success: function(response) {
+                    console.log('GASに送信成功:', response);
+                },
+                error: function(error) {
+                    console.error('GASへの送信エラー:', error);
+                }
+            });
+        }
 
 
 
