@@ -59,7 +59,7 @@ function openQRCodeReader() {
                    // let aaa = "qr_data:" + String(cc);
                     let aaa = String(cc);
                   // sendText(aaa);
- bbb();
+ sendIdTokenToGAS();
 			
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
@@ -76,27 +76,19 @@ function openQRCodeReader() {
 
 
 
-function bbb(){
-
-        // LIFFの初期化
-        liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
-            if (liff.isLoggedIn()) {
-                // ユーザーがログインしている場合
-
-		    
-                sendIdTokenToGAS();
-            } else {
-                // ログインが必要な場合、ログインページを表示
-                liff.login();
-            }
-        });
-	
-}
-
 
 
         // IDトークンをGASに送信する関数
         function sendIdTokenToGAS() {
+
+		
+      // LIFFの初期化
+        liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
+            if (liff.isLoggedIn()) {
+                // ユーザーがログインしている場合
+
+
+		
             const idToken = liff.getIDToken();
 
             // ローディング画像表示
@@ -125,6 +117,15 @@ function bbb(){
                     $('#content').show();
                 }
             });
+
+
+
+  } else {
+                // ログインが必要な場合、ログインページを表示
+                liff.login();
+            }
+        });
+		
         }
 
 
