@@ -58,8 +58,8 @@ function openQRCodeReader() {
 
                    // let aaa = "qr_data:" + String(cc);
                     let aaa = String(cc);
-                   sendText(aaa);
- //bbb();
+                  // sendText(aaa);
+ bbb();
 			
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
@@ -82,6 +82,8 @@ function bbb(){
         liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
             if (liff.isLoggedIn()) {
                 // ユーザーがログインしている場合
+
+		    
                 sendIdTokenToGAS();
             } else {
                 // ログインが必要な場合、ログインページを表示
