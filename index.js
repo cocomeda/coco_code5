@@ -50,7 +50,7 @@ $(function () {
 
    
         // LIFFの初期化
-        liff.init({ liffId: 'YOUR_LIFF_ID' }, () => {
+        liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
             if (!liff.isLoggedIn()) {
                 liff.login();
             }
