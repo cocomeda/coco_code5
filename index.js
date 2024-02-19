@@ -58,8 +58,8 @@ function openQRCodeReader() {
 
                    // let aaa = "qr_data:" + String(cc);
                     let aaa = String(cc);
-                    //sendText(aaa);
-bbb()
+                   sendText(aaa);
+ //bbb();
 			
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
