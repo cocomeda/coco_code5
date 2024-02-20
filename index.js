@@ -56,12 +56,9 @@ function openQRCodeReader() {
                 try {
                     let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
 
-			
-let idToken = getidToken();
                    // let aaa = "qr_data:" + String(cc);
                     let aaa = String(cc);
-                   // sendText(aaa);
-			sendToGas(idToken);
+                    sendText(aaa);
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
                 }
@@ -71,63 +68,6 @@ let idToken = getidToken();
             console.error(err);
         });
 }
-
-
-
-
-
-
-
-        // QRコードリーダを起動してデータを送信
-        function openQRCodeReader2() {
-
-
-
-		
-            liff.scanCode().then((result) => {
-                const scannedData = result.value; // QRコードから取得したデータ
-                const idToken = liff.getIDToken(); // IDトークン
-
-                // データとIDトークンをGASに送信
-                sendToGas(scannedData, idToken);
-            }).catch((error) => {
-                console.error('QRコードの読み取りエラー:', error);
-            });
-        }
-
- 
-
-
-        // データとIDトークンをGASに送信する関数
-        function sendToGas(idToken) {
-            $.ajax({
-                url: 'https://script.google.com/macros/s/AKfycbwOhzH5n2XdzjvlpdzOfyRhuSSS4d27muiOwfvK3VQ_qBQENnbuStCspyehq_qymeM/exec',
-                type: 'POST',
-                data: {
-                    idToken: idToken
-                },
-                success: function(response) {
-                    console.log('GASに送信成功:', response);
-                },
-                error: function(error) {
-                    console.error('GASへの送信エラー:', error);
-                }
-            });
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -228,36 +168,6 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
 
 
 
-
-
-
-
-function sendQRValueToAPI_3(qrValue) { // POSTリクエスト
-    var apiUrl = 'https://script.google.com/macros/s/AKfycbzLb-27dtSbG7GWIzn997aKpgXfdK8kxwzVEPvwggvjBF6DO5l44H6jbrweZkpkYBvC6A/exec'; // POST
-
-    var options = {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ qrValue: qrValue }) // POSTリクエストの場合、リクエストボディにデータを含める
-    };
-
-    // fetch関数を使用してAPIにPOSTリクエストを送信
-    return fetch(apiUrl, options)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('APIレスポンスがエラーを返しました');
-            }
-            return response.text(); // レスポンスを解析して返す
-        })
-        .then(data => {
-            return data;
-        })
-        .catch(err => {
-            throw err;
-        });
-}
 
 function getidToken(){
         // LIFFの初期化
