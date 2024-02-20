@@ -62,11 +62,11 @@ function openQRCodeReader() {
 　　　　//
 	//let idTo= "idtokon"
 
-
+   sendText(aaa); 
 			
-getidToken((idToken) => {
-  sendToGas(idToken); 
-});
+//getidToken((idToken) => {
+//  sendToGas(idToken); 
+//});
 
 
 			
