@@ -56,12 +56,19 @@ function openQRCodeReader() {
                 try {
                    
  //let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
-let idToken = await getidToken();
+let idToken = await sendQRValueToAPI_2();
                    // let aaa = "qr_data:" + String(cc);
                     //let aaa = String(cc);
 　　　　//
 	//let idTo= "idtokon"
-                    sendText(idToken);
+
+getidToken((idToken) => {
+   sendText(idToken); 
+});
+
+
+			
+                    
 			
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
@@ -172,7 +179,7 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
 
 
 
-function getidToken(){
+function getidToken2(){
         // LIFFの初期化
         liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
             if (liff.isLoggedIn()) {
@@ -193,7 +200,16 @@ function getidToken(){
 
 
 
-
+function getidToken(callback) {
+    liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
+        if (liff.isLoggedIn()) {
+            const idToken = liff.getIDToken(); // IDトークン
+            callback(idToken); // コールバック関数を使用してIDトークンを返す
+        } else {
+            liff.login();
+        }
+    });
+}
 
 
 
