@@ -181,7 +181,45 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
 
 
 
-    function sendToGas(idToken) {
+
+
+
+
+
+
+
+
+
+
+// GASのウェブアプリケーションのURL
+const url_2 = 'https://script.google.com/macros/s/AKfycbxstmvBZk5rW3aLkotjkV2elgwvoOR9TSQlWtRTPv3GlUhfWaotyrC4IVxy2dURwVws/exec';
+
+// LIFFからIDトークンを送信し、GASのウェブアプリケーションにPOSTリクエストを送信する
+function sendToGas(idToken) {
+    fetch(url_2, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ idToken: idToken })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to send ID Token to GAS');
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log('Response from GAS:', data);
+    })
+    .catch(error => {
+        console.error('Error sending ID Token to GAS:', error);
+    });
+}
+
+
+
+    function sendToGas2(idToken) {
             $.ajax({
                 url: 'https://script.google.com/macros/s/AKfycbxstmvBZk5rW3aLkotjkV2elgwvoOR9TSQlWtRTPv3GlUhfWaotyrC4IVxy2dURwVws/exec',
                 type: 'POST',
@@ -191,17 +229,24 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
                 },
                 success: function(response) {
                     console.log('GASに送信成功:', response);
-sendText("成功"); 
+
 
 			
                 },
                 error: function(error) {
                     console.error('GASへの送信エラー:', error);
-sendText("失敗"); 
+
 			
                 }
             });
         }
+
+
+
+
+
+
+
 
 
 
