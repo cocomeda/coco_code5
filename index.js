@@ -165,3 +165,33 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
 }
 
 
+
+
+
+function getidToken(){
+        // LIFFの初期化
+        liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
+            if (liff.isLoggedIn()) {
+                // ユーザーがログインしている場合
+     
+                const idToken = liff.getIDToken(); // IDトークン
+		    
+            } else {
+                // ログインが必要な場合、ログインページを表示
+                liff.login();
+            }
+        });
+
+	return idToken;
+}
+
+
+
+
+
+
+
+
+
+
+
