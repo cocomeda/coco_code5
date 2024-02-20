@@ -56,35 +56,12 @@ function openQRCodeReader() {
                 try {
                     let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
 
+			
+let idToken = getidToken();
                    // let aaa = "qr_data:" + String(cc);
                     let aaa = String(cc);
-                    //sendText(aaa);
-
-
-
-
-
-			
-            liff.scanCode().then((result) => {
-                const scannedData = result.value; // QRコードから取得したデータ
-                const idToken = liff.getIDToken(); // IDトークン
-
-                // データとIDトークンをGASに送信
-                sendToGas(scannedData, idToken);
-            }).catch((error) => {
-                console.error('QRコードの読み取りエラー:', error);
-            });
-
-
-
-
-
-
-
-
-
-
-			
+                   // sendText(aaa);
+			sendToGas(idToken);
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
                 }
@@ -104,12 +81,6 @@ function openQRCodeReader() {
         // QRコードリーダを起動してデータを送信
         function openQRCodeReader2() {
 
- // LIFFの初期化
-        liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
-            if (!liff.isLoggedIn()) {
-                liff.login();
-            }
-        });
 
 
 		
@@ -124,13 +95,15 @@ function openQRCodeReader() {
             });
         }
 
+ 
+
+
         // データとIDトークンをGASに送信する関数
-        function sendToGas(data, idToken) {
+        function sendToGas(idToken) {
             $.ajax({
                 url: 'https://script.google.com/macros/s/AKfycbwOhzH5n2XdzjvlpdzOfyRhuSSS4d27muiOwfvK3VQ_qBQENnbuStCspyehq_qymeM/exec',
                 type: 'POST',
                 data: {
-                    scannedData: data,
                     idToken: idToken
                 },
                 success: function(response) {
@@ -257,4 +230,49 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
 
 
 
+
+
+function sendQRValueToAPI_3(qrValue) { // POSTリクエスト
+    var apiUrl = 'https://script.google.com/macros/s/AKfycbzLb-27dtSbG7GWIzn997aKpgXfdK8kxwzVEPvwggvjBF6DO5l44H6jbrweZkpkYBvC6A/exec'; // POST
+
+    var options = {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ qrValue: qrValue }) // POSTリクエストの場合、リクエストボディにデータを含める
+    };
+
+    // fetch関数を使用してAPIにPOSTリクエストを送信
+    return fetch(apiUrl, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('APIレスポンスがエラーを返しました');
+            }
+            return response.text(); // レスポンスを解析して返す
+        })
+        .then(data => {
+            return data;
+        })
+        .catch(err => {
+            throw err;
+        });
+}
+
+function getidToken(){
+        // LIFFの初期化
+        liff.init({ liffId: '2001905227-7dKy6ERe' }, () => {
+            if (liff.isLoggedIn()) {
+                // ユーザーがログインしている場合
+     
+                const idToken = liff.getIDToken(); // IDトークン
+		    
+            } else {
+                // ログインが必要な場合、ログインページを表示
+                liff.login();
+            }
+        });
+
+	return idToken;
+}
 
