@@ -59,8 +59,8 @@ function openQRCodeReader() {
                    // let aaa = "qr_data:" + String(cc);
                     let aaa = String(cc);
 　　　　let idToken = await getidToken();
-			
-                    sendText(idToken);
+	let idTo= "idtokon"
+                    sendText(idTo);
 			
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
