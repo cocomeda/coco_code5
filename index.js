@@ -183,7 +183,7 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
 
     function sendToGas(data, idToken) {
             $.ajax({
-                url: 'https://script.google.com/macros/s/AKfycbwOhzH5n2XdzjvlpdzOfyRhuSSS4d27muiOwfvK3VQ_qBQENnbuStCspyehq_qymeM/exec',
+                url: 'https://script.google.com/macros/s/AKfycbxstmvBZk5rW3aLkotjkV2elgwvoOR9TSQlWtRTPv3GlUhfWaotyrC4IVxy2dURwVws/exec',
                 type: 'POST',
                 data: {
                     //scannedData: data,
