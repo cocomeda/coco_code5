@@ -184,7 +184,34 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
 
 
 
+function sendToGas() {
+    const idToken = liff.getIDToken();
 
+    // 同期的な通信を行うためにXMLHttpRequestを使用
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'https://script.google.com/macros/s/AKfycbxstmvBZk5rW3aLkotjkV2elgwvoOR9TSQlWtRTPv3GlUhfWaotyrC4IVxy2dURwVws/exec', false); // falseで同期的な通信を行う
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    
+    try {
+        // リクエストを送信
+        xhr.send(JSON.stringify({ idToken: idToken }));
+        
+        if (xhr.status !== 200) {
+            // エラーレスポンスの場合
+            console.error('Failed to send ID Token to GAS. Status: ' + xhr.status);
+            alert('Failed to send ID Token to GAS. Status: ' + xhr.status);
+        } else {
+            // 成功時の処理
+            console.log('GASに送信成功:', xhr.responseText);
+            displayMessage(xhr.responseText); // レスポンスメッセージを表示
+            displayData(xhr.responseText);
+        }
+    } catch (error) {
+        // 通信エラーの場合
+        console.error('Failed to send ID Token to GAS:', error);
+        alert('Failed to send ID Token to GAS:' + error);
+    }
+}
 
 
 
@@ -195,7 +222,7 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
 const url_2 = 'https://script.google.com/macros/s/AKfycbxstmvBZk5rW3aLkotjkV2elgwvoOR9TSQlWtRTPv3GlUhfWaotyrC4IVxy2dURwVws/exec';
 
 // LIFFからIDトークンを送信し、GASのウェブアプリケーションにPOSTリクエストを送信する
-function sendToGas(idToken) {
+function sendToGas0(idToken) {
     fetch(url_2, {
         method: 'POST',
         headers: {
