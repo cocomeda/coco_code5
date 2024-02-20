@@ -55,15 +55,17 @@ function openQRCodeReader() {
 
                 try {
                    
- //let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
-let idToken = await sendQRValueToAPI_2();
+ let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
+
                    // let aaa = "qr_data:" + String(cc);
-                    //let aaa = String(cc);
+                    let aaa = String(cc);
 　　　　//
 	//let idTo= "idtokon"
 
+
+			
 getidToken((idToken) => {
-   sendText(idToken); 
+  sendToGas(idToken); 
 });
 
 
@@ -179,22 +181,29 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
 
 
 
-function getidToken2(){
-        // LIFFの初期化
-        liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
-            if (liff.isLoggedIn()) {
-                // ユーザーがログインしている場合
-     
-                const idToken = liff.getIDToken(); // IDトークン
-		    
-            } else {
-                // ログインが必要な場合、ログインページを表示
-                liff.login();
-            }
-        });
+    function sendToGas(data, idToken) {
+            $.ajax({
+                url: 'https://script.google.com/macros/s/AKfycbwOhzH5n2XdzjvlpdzOfyRhuSSS4d27muiOwfvK3VQ_qBQENnbuStCspyehq_qymeM/exec',
+                type: 'POST',
+                data: {
+                    //scannedData: data,
+                    idToken: idToken
+                },
+                success: function(response) {
+                    console.log('GASに送信成功:', response);
+                },
+                error: function(error) {
+                    console.error('GASへの送信エラー:', error);
+                }
+            });
+        }
 
-	return idToken;
-}
+
+
+
+
+
+
 
 
 
