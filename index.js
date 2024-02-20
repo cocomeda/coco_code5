@@ -184,8 +184,8 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
 
 
 
-function sendToGas() {
-    const idToken = liff.getIDToken();
+function sendToGas(idToken) {
+
 
     // 同期的な通信を行うためにXMLHttpRequestを使用
     const xhr = new XMLHttpRequest();
