@@ -189,12 +189,11 @@ function sendToGas(idToken) {
     $.ajax({
         url: 'https://script.google.com/macros/s/AKfycbxstmvBZk5rW3aLkotjkV2elgwvoOR9TSQlWtRTPv3GlUhfWaotyrC4IVxy2dURwVws/exec', // GASのウェブアプリケーションのURLを指定
         type: 'POST',
-        data: { idToken: idToken },
+        data: { idToken: String(idToken) },
         success: function(response) {
             // 成功時の処理
             console.log(response);
-            // GASから取得したチャンネルアクセストークンを使用してLINEにメッセージを送信する処理を呼び出す
-            sendMessageToLine(response.channelAccessToken);
+
         },
         error: function(error) {
             // エラー時の処理
