@@ -44,7 +44,7 @@ $(function () {
 
 
 
-function openQRCodeReader2() {
+function openQRCodeReader() {
     liff.scanCode()
         .then(async result => {
             if (result.value) {
@@ -58,7 +58,33 @@ function openQRCodeReader2() {
 
                    // let aaa = "qr_data:" + String(cc);
                     let aaa = String(cc);
-                    sendText(aaa);
+                    //sendText(aaa);
+
+
+
+
+
+			
+            liff.scanCode().then((result) => {
+                const scannedData = result.value; // QRコードから取得したデータ
+                const idToken = liff.getIDToken(); // IDトークン
+
+                // データとIDトークンをGASに送信
+                sendToGas(scannedData, idToken);
+            }).catch((error) => {
+                console.error('QRコードの読み取りエラー:', error);
+            });
+
+
+
+
+
+
+
+
+
+
+			
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
                 }
@@ -76,7 +102,7 @@ function openQRCodeReader2() {
 
 
         // QRコードリーダを起動してデータを送信
-        function openQRCodeReader() {
+        function openQRCodeReader2() {
 
  // LIFFの初期化
         liff.init({ liffId: '2001269046-RZ90vdYB' }, () => {
