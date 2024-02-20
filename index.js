@@ -191,9 +191,14 @@ function sendQRValueToAPI_2(qrValue) { // GETリクエスト
                 },
                 success: function(response) {
                     console.log('GASに送信成功:', response);
+sendText("成功"); 
+
+			
                 },
                 error: function(error) {
                     console.error('GASへの送信エラー:', error);
+sendText("失敗"); 
+			
                 }
             });
         }
