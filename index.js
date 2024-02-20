@@ -193,7 +193,7 @@ function sendToGas(idToken) {
         success: function(response) {
             // 成功時の処理
             console.log(response);
-  liff.closeWindow();
+ 
         },
         error: function(error) {
             // エラー時の処理
