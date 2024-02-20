@@ -58,7 +58,7 @@ function openQRCodeReader() {
 
                    // let aaa = "qr_data:" + String(cc);
                     let aaa = String(cc);
-　　　　let idToken = await getidToken();
+　　　　//let idToken = await getidToken();
 	let idTo= "idtokon"
                     sendText(idTo);
 			
