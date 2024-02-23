@@ -64,9 +64,9 @@ function openQRCodeReader() {
    //sendText(aaa); 
 			
 getidToken((idToken) => {
-    const options = String(JSON.stringify({ idToken: idToken }))
+  
     
-	sendText(options); 
+	sendText(idToken); 
 });
 
 
