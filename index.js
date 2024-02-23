@@ -55,17 +55,24 @@ function openQRCodeReader() {
 
                 try {
                    
-let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
+//let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
                    // let aaa = "qr_data:" + String(cc);
                     let aaa = String(cc);
 　　　　//
 	//let idTo= "idtokon"
 
-   sendText(aaa); 
+   //sendText(aaa); 
 			
-//getidToken((idToken) => {
-//  sendToGas(idToken); 
-//});
+getidToken((idToken) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ idToken: idToken })
+    }
+	sendText(options); 
+});
 
 
 			
