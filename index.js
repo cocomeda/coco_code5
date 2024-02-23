@@ -64,13 +64,8 @@ function openQRCodeReader() {
    //sendText(aaa); 
 			
 getidToken((idToken) => {
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ idToken: idToken })
-    }
+    const options = String(JSON.stringify({ idToken: idToken }))
+    
 	sendText(options); 
 });
 
