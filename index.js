@@ -65,8 +65,8 @@ function openQRCodeReader() {
 			
 getidToken((idToken) => {
   
-    
-	sendText(idToken); 
+    let m= "aaaa"
+	sendText(m); 
 });
 
 
