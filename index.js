@@ -55,37 +55,15 @@ function openQRCodeReader() {
 
                 try {
                    
-//let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
+let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
                    // let aaa = "qr_data:" + String(cc);
-                    //let aaa = String(cc);
+                    let aaa = String(cc);
 　　　　//
 	//let idTo= "idtokon"
 
-   //sendText(aaa); 
+   sendText(aaa); 
 			
 getidToken((idToken) => {
-
-
-	
-    const apiUrl = 'https://script.google.com/macros/s/AKfycbyEJY1LTAb-nS65zsXF_uvy6G7X99Oijy8DIq6FUcVponvvKBbekCPuya0n_7t8aVi1/exec';
-    
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ idToken: idToken })
-    };
-  
-    const response = await fetch(apiUrl, options);
-    
-    if (!response.ok) {
-        throw new Error('APIレスポンスがエラーを返しました');
-    }
-    
-    const responseData = await response.text();
-    console.log('APIレスポンス:', responseData);
-
 
 });
 
