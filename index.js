@@ -54,22 +54,19 @@ function openQRCodeReader() {
                 let qr_data = result.value; // 10進数AAAAAAAAAAAAAAAA
 
                 try {
-                   
-let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
+                    let cc = await sendQRValueToAPI_2(qr_data); // sendQRValueToAPI_2関数を非同期で実行し、処理を待つ
+
                    // let aaa = "qr_data:" + String(cc);
                     let aaa = String(cc);
-　　　　//
-	//let idTo= "idtokon"
-
-   sendText(aaa); 
-			
-getidToken((idToken) => {
-
-});
+                    sendText(aaa);
 
 
-			
-                    
+
+//getidToken((idToken) => {
+
+//};
+
+
 			
                 } catch (err) {
                     console.error('Error sending QR value to API:', err);
@@ -80,6 +77,8 @@ getidToken((idToken) => {
             console.error(err);
         });
 }
+
+
 
 
 
