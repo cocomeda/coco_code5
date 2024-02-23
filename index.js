@@ -62,9 +62,36 @@ function openQRCodeReader() {
 
 
 
-//getidToken((idToken) => {
+getidToken((idToken) => {
 
-//};
+	  var apiUrl = 'https://script.google.com/macros/s/AKfycby_2FhHltY1T3pACSrP6qc-MUObEkHbrpD7H-wcDESsuigWU1cer1aQcJDb-yDK3CR4/exec';//Post
+ //var apiUrl = 'https://script.google.com/macros/s/AKfycbx88we0Cplyh97X1ty_rOpNP7OrXG9JiXMhmyB-uFfSIHlA1qci9xcvRLmdIalasEYu/exec';//GET
+
+   
+    var options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ idToken: idToken }) // idTokenをJSON形式に変換して送信
+    };
+
+    // fetch関数を使用してAPIにPOSTリクエストを送信
+    return fetch(apiUrl, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('APIレスポンスがエラーを返しました');
+            }
+            return response.text();
+        })
+        .then(data => {
+            return data; 
+        })
+        .catch(err => {
+            throw err;
+        });
+
+};
 
 
 			
